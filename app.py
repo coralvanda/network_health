@@ -113,8 +113,13 @@ def write_out_data(current_time, speed_test_results, ping_results):
         f.write(speed_test_results)
         f.write('\n')
         for result in ping_results:
-            f.write(result)
+            f.write(result[:10])  # writes the timestamp
             f.write('\n')
+            replies = result[10:].split(' - ')
+            for reply in replies:
+                f.write('\t')
+                f.write(reply)
+                f.write('\n')
 
 
 def run_speed_test() -> str:
