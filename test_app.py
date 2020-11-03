@@ -51,8 +51,24 @@ class TestNetworkHealthApp(unittest.TestCase):
         response = update_stored_results(ping_time='test', ping_result=[1, 2, 3], history=['test'])
         self.assertEqual(response, ['test', 'test: 1 - 2 - 3'])
 
-    def test_write_out_data(self):
-        pass
+    # Used for manually checking the output file format
+    # def test_write_out_data(self):
+    #     import datetime
+    #     from app import write_out_data
+    #
+    #     response = write_out_data(
+    #         current_time=datetime.datetime.now(),
+    #         speed_test_results='100.00, 30.00',
+    #         ping_results=[
+    #             '11:47:47: Reply from 204.2.229.9, 9 bytes in 83.94ms - '
+    #             'Reply from 204.2.229.9, 9 bytes in 83.13ms - '
+    #             'Reply from 204.2.229.9, 9 bytes in 85.62ms - '
+    #             'Reply from 204.2.229.9, 9 bytes in 85.71ms',
+    #             '11:48:18: Reply from 204.2.229.9, 9 bytes in 84.58ms - '
+    #             'Reply from 204.2.229.9, 9 bytes in 85.73ms - '
+    #             'Reply from 204.2.229.9, 9 bytes in 85.06ms - '
+    #             'Reply from 204.2.229.9, 9 bytes in 86.0ms']
+    #     )
 
     def test_run_speed_test(self):
         from app import run_speed_test
