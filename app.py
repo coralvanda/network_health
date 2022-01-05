@@ -11,18 +11,16 @@ import os
 from datetime import datetime
 from typing import List
 
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import Dash, dcc, html, Input, Output, State
 import speedtest
 
 from pythonping import ping
 
 COLORS = ['green'] + ['yellow'] * 4 + ['orange'] * 5 + ['red'] * 11  # total len 20
 BASE_FILE_PATH = os.path.join(os.getcwd(), 'history')
-Speed_Test = speedtest.Speedtest()
+Speed_Test = speedtest.Speedtest(config=None)
 
-app = dash.Dash()
+app = Dash()
 
 
 def get_layout():
@@ -39,14 +37,14 @@ app.layout = get_layout()
 
 @app.callback(
     [
-        dash.dependencies.Output('ping-output', 'children'),
-        dash.dependencies.Output('store', 'data'),
+        Output('ping-output', 'children'),
+        Output('store', 'data'),
     ],
     [
-        dash.dependencies.Input('interval-id', 'n_intervals'),
+        Input('interval-id', 'n_intervals'),
     ],
     [
-        dash.dependencies.State('store', 'data'),
+        State('store', 'data'),
     ]
 )
 def callback_func(tick, store_state):
