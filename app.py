@@ -11,7 +11,7 @@ import os
 from datetime import datetime
 from typing import List
 
-from dash import Dash, dcc, html
+from dash import Dash, dcc, html, Input, Output, State
 #import speedtest
 
 from pythonping import ping
@@ -37,14 +37,14 @@ app.layout = get_layout()
 
 @app.callback(
     [
-        dash.dependencies.Output('ping-output', 'children'),
-        dash.dependencies.Output('store', 'data'),
+        Output('ping-output', 'children'),
+        Output('store', 'data'),
     ],
     [
-        dash.dependencies.Input('interval-id', 'n_intervals'),
+        Input('interval-id', 'n_intervals'),
     ],
     [
-        dash.dependencies.State('store', 'data'),
+        State('store', 'data'),
     ]
 )
 def callback_func(tick, store_state):
