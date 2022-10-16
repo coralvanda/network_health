@@ -12,13 +12,13 @@ from datetime import datetime
 from typing import List
 
 from dash import Dash, dcc, html, Input, Output, State
-import speedtest
+#import speedtest
 
 from pythonping import ping
 
 COLORS = ['green'] + ['yellow'] * 4 + ['orange'] * 5 + ['red'] * 11  # total len 20
-BASE_FILE_PATH = os.path.join(os.getcwd(), 'history')
-Speed_Test = speedtest.Speedtest(config=None)
+BASE_FILE_PATH = '/home/pi/shared/history'
+#Speed_Test = speedtest.Speedtest()
 
 app = Dash()
 
@@ -59,7 +59,7 @@ def callback_func(tick, store_state):
     response_as_str = '1' if good_response else '0'
 
     if len(store_state['pings']) >= 120:  # one hour of pings
-        speed_test_results = run_speed_test()
+	#speed_test_results = run_speed_test()
 
         write_out_data(
             current_time=current_time,
@@ -120,11 +120,11 @@ def write_out_data(current_time, speed_test_results, ping_results):
                 f.write('\n')
 
 
-def run_speed_test() -> str:
-    down_speed = round((round(Speed_Test.download()) / 1048576), 2)
-    up_speed = round((round(Speed_Test.upload()) / 1048576), 2)
+#def run_speed_test() -> str:
+#    down_speed = round((round(Speed_Test.download()) / 1048576), 2)
+#    up_speed = round((round(Speed_Test.upload()) / 1048576), 2)
 
-    return f'Download speed: {down_speed}, Upload speed: {up_speed}'
+#    return f'Download speed: {down_speed}, Upload speed: {up_speed}'
 
 
 if __name__ == '__main__':
