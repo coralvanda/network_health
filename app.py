@@ -18,6 +18,7 @@ from pythonping import ping
 
 COLORS = ['green'] + ['yellow'] * 4 + ['orange'] * 5 + ['red'] * 11  # total len 20
 BASE_FILE_PATH = '/home/pi/shared/history'
+PING_IP_ADDRESS = '8.8.8.8'
 #Speed_Test = speedtest.Speedtest()
 
 app = Dash()
@@ -49,7 +50,7 @@ app.layout = get_layout()
 )
 def callback_func(tick, store_state):
     speed_test_results = ''
-    response = ping('204.2.229.9', verbose=False)
+    response = ping(PING_IP_ADDRESS, verbose=False)
     good_response = all(r.success for r in response)
 
     current_time = datetime.now()
